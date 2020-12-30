@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+templates/admin/.travis.yml 
+templates/admin/.gitignore 
+templates/admin/.browserslistrc 
+templates/.gitignore
+templates/.travis.yml
+
