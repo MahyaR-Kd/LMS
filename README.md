@@ -3,3 +3,5 @@
 
 
  ## TODO
+ 
+ - [ ] save hash password in DB
