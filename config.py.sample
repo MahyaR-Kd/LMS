@@ -1,2 +1,7 @@
-USERNAME = 'admin'
-PASSWORD = 'admin'
+SECRET_KEY = 'Long string'
+
+PSQL_DB_NAME = "database name"
+PSQL_USERNAME = "user name"
+PSQL_PASSWORD = "password"
+PSQL_HOST = "127.0.0.1"
+PSQL_PORT = "5432"
