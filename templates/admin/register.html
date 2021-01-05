@@ -36,35 +36,34 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form action="" class="user" method="POST">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
+                                            placeholder="First Name" name="firstname" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
+                                            placeholder="Last Name" name="lastname" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
+                                    <input type="email" class="form-control form-control-user" id="emailaddress"
+                                        placeholder="Email Address" name="emailaddress" required>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="password" placeholder="Password" name="password" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            id="confirm_password" placeholder="Repeat Password" required>
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
-                                <hr>
+                                <input class="btn btn-primary btn-user btn-block" type="submit" value="Register Account">
+                                    
+                                
                                 <!--
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -74,6 +73,18 @@
                                 </a>
                                 -->
                             </form>
+                            <br>
+                            <div>
+                                {% with messages = get_flashed_messages(with_categories=true) %}
+                                {% if messages %}
+                                    <ul class=flashes>
+                                    {% for category, message in messages %}
+                                    <li class="{{ category }}">{{ message }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                {% endwith %}
+                            </div>
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="/forgot-pass">Forgot Password?</a>
@@ -92,6 +103,65 @@
 
     </div>
 
+
+    <!-- Confirm Password JavaScript-->
+
+    <script >
+        var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password")
+    , emailadd =document.getElementById("emailaddress");
+  
+  function matchPassword(){
+    if(password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+      confirm_password.setCustomValidity('');
+    }
+  }
+
+  function validatePassword(){
+    var len = password.value.length;
+    // var symbol = /[\W]/;
+    // var number = /[\d]/;
+    // var symbolLen = symbol.exec(password.value).length;
+    // var numberLen = number.exec(password.value).length;
+
+    if( len >= 8) {
+        password.setCustomValidity("");
+    } else {
+     password.setCustomValidity("Your Password is Too Weak!");
+    }
+    //   if( symbolLen >= 2) {
+    //     if( numberlLen >= 2) {
+             
+    //   } else {
+    //       password.setCustomValidity("Add 2 or more Number!");
+    //         }
+    // } else {
+    //   password.setCustomValidity("Add 2 or more Symbol!");
+    // }
+
+  }
+
+  function validateEmail(){
+    let email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (email.test(emailadd.value)){
+          emailadd.setCustomValidity("");
+    }else{
+          emailadd.setCustomValidity("Email Don't Valid");
+
+      }
+  }
+  password.onchange = validatePassword;
+  password.onkeyup = validatePassword;
+
+  password.onchange = matchPassword;
+  confirm_password.onkeyup = matchPassword;
+  emailadd.onchange = validateEmail;
+  emailadd.onkeyup = validateEmail;
+
+
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -101,7 +171,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="static/js/sb-admin-2.min.js"></script>
-
+   
 </body>
 
 </html>
