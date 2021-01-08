@@ -4,7 +4,7 @@
 
  ## TODO
  
- - [x] create mail sender for register and page
+ - [x] create mail sender for register page
  - [x] generate token for user
  - [x] verify account
  - [x] add limiter for expire verify code when 5 time use
