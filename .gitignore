@@ -138,3 +138,17 @@ templates/admin/.browserslistrc
 templates/.gitignore
 templates/.travis.yml
 
+static/courses/
+static/img/6C6Rw6ozK.jpeg
+static/img/courses.png
+static/img/django-4.jpg
+static/img/download.png
+static/img/flask.png
+static/img/iconfinder_lms_71660.png
+static/img/minutes.png
+static/img/new-mainpage1-min.jpg
+static/img/registered.png
+static/img/slider1.png
+static/img/slider2.jpg
+static/img/slider3.jpg
+
