@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='img/iconfinder_lms_71660.png') }}" type="image/icon type">
 
 </head>
 
@@ -41,7 +42,7 @@
 
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="VerifyCode"
-                                        placeholder="Verify Code" name="verifycode" min="100000" max="999999" autofocus required>
+                                        placeholder="Verify Code" name="verifycode" autofocus required>
                                 </div>
 
                                 <input class="btn btn-primary btn-user btn-block" type="submit" value="Register Account">
@@ -60,13 +61,14 @@
                             <div>
                                 {% with messages = get_flashed_messages(with_categories=true) %}
                                 {% if messages %}
-                                    <ul class=flashes>
                                     {% for category, message in messages %}
-                                    <li class="{{ category }}">{{ message }}</li>
-                                    {% endfor %}
-                                    </ul>
-                                {% endif %}
-                                {% endwith %}
+                                    <div class="alert alert-{{ category }}">
+                                        {{ message }}
+                                    </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% endwith %}
+
                             </div>
 
                             <div class="text-center">

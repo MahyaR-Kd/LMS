@@ -9,22 +9,25 @@
   <meta name="author" content="">
 
   <title>LMS - Platform</title>
-
+  <link rel="icon" href="{{ url_for('static', filename='img/iconfinder_lms_71660.png') }}" type="image/icon type">
   <!-- Bootstrap core CSS -->
   <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+  <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
   <!-- Custom styles for this template -->
   <link href="static/css/style.css" rel="stylesheet">
-
 </head>
 
-<body>
+<body id="page-top">
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
       <a class="navbar-brand" href="">LMS - Platform</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -38,8 +41,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/contact">Contact</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="/login">login | signup</a>
+            <a class="btn btn-primary btn-user btn-block" href="/login">login | signup</a>
           </li>
           <!--li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -86,38 +90,34 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-color: #28586e">
-          <div class="carousel-caption d-none d-md-block">
+        <div class="carousel-item active" style="background-image: url(static/img/slider1.png);">
+          <div class="carousel-caption text-dark d-none d-md-block">
             <h3>First Slide</h3>
             <p>This is a description for the first slide.</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-color: #28586e">
-          <div class="carousel-caption d-none d-md-block">
+        <div class="carousel-item " style="background-image: url(static/img/slider2.jpg);">
+          <div class="carousel-caption text-dark d-none d-md-block">
             <h3>Second Slide</h3>
-            <p>This is a description for the second slide.</p>
+            <p>This is a description for the Second slide.</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-color: #28586e">
-          <div class="carousel-caption d-none d-md-block">
+        <div class="carousel-item " style="background-image: url(static/img/slider3.jpg);">
+          <div class="carousel-caption text-dark d-none d-md-block">
             <h3>Third Slide</h3>
-            <p>This is a description for the third slide.</p>
+            <p>This is a description for the Third slide.</p>
           </div>
         </div>
 
-        <!-- Slide Four - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-color: #28586e">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>Fourth Slide</h3>
-            <p>This is a description for the Fourth slide.</p>
-          </div>
-        </div>
+
+
+
+
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -136,11 +136,13 @@
     <h1 class="my-4">Welcome to Modern Business</h1>
 
     <!-- Marketing Icons Section -->
-    <div class="row">
+    <!-- <div class="row">
+      {% for i in  range(3) %}
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
+          <h4 class="card-header"><img style="text-align: center;" width="300px" src="{{ url_for('static', filename='img/6C6Rw6ozK.jpeg')}}"></h4>
           <div class="card-body">
+            <p class="card-header th"></p>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
@@ -148,9 +150,30 @@
           </div>
         </div>
       </div>
+      {% endfor %}
+    </div> -->
+    <div class="row">
+      {% for i in range(data.course_list|length) %}
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
+          <h4 class="card-header"><img style="text-align: center;" width="300px"
+              src="/static/courses/{{ data.course_list[i].img }}"></h4>
+          <div class="card-body">
+            <!-- /static/courses/efwfewww%40gmail.com/4394_6C6Rw6ozK.jpeg -->
+            <p class="card-header th">{{ data.course_list[i].course_name }}</p>
+            <br>
+            <p class="card-text">{{ data.course_list[i].course_summary }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="/courses?id={{ data.course_list[i].id }}" class="btn btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header" style="text-align: center;">Card Title</h4>
           <div class="card-body">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
           </div>
@@ -169,8 +192,8 @@
             <a href="#" class="btn btn-primary">Learn More</a>
           </div>
         </div>
-      </div>
-    </div>
+      </div>-->
+
     <!-- /.row -->
 
     <!-- Portfolio Section -->
@@ -184,7 +207,9 @@
             <h4 class="card-title">
               <a href="#">Project One</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum
+              quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum
+              tempora ex quae? Nihil, dolorem!</p>
           </div>
         </div>
       </div>
@@ -195,7 +220,8 @@
             <h4 class="card-title">
               <a href="#">Project Two</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio,
+              gravida pellentesque urna varius vitae.</p>
           </div>
         </div>
       </div>
@@ -206,7 +232,9 @@
             <h4 class="card-title">
               <a href="#">Project Three</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed
+              cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia
+              recusandae vero vel quam!</p>
           </div>
         </div>
       </div>
@@ -217,7 +245,8 @@
             <h4 class="card-title">
               <a href="#">Project Four</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio,
+              gravida pellentesque urna varius vitae.</p>
           </div>
         </div>
       </div>
@@ -228,7 +257,8 @@
             <h4 class="card-title">
               <a href="#">Project Five</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio,
+              gravida pellentesque urna varius vitae.</p>
           </div>
         </div>
       </div>
@@ -239,7 +269,9 @@
             <h4 class="card-title">
               <a href="#">Project Six</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit
+              ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat
+              fugiat excepturi! Nemo, esse.</p>
           </div>
         </div>
       </div>
@@ -260,7 +292,9 @@
           <li>Working contact form with validation</li>
           <li>Unstyled page elements for easy customization</li>
         </ul>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id
+          reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum
+          ducimus unde.</p>
       </div>
       <div class="col-lg-6">
         <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
@@ -273,7 +307,8 @@
     <!-- Call to Action Section -->
     <div class="row mb-4">
       <div class="col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti
+          beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
       </div>
       <div class="col-md-4">
         <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
@@ -291,9 +326,26 @@
     <!-- /.container -->
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="static/vendor/jquery/jquery.min.js"></script>
-  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
 
 </body>
 
