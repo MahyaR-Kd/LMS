@@ -16,5 +16,6 @@
  - [x] make course creator for teacher dashboard
  - [x] make accsess change user roles for admin dashboard 
  - [x] make course view in home page
+ - [x] add statistics card in admin and teacher dashboard
  - [ ] send email for welcome to site
  - [ ] create mail sender for forgot password page

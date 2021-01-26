@@ -13,7 +13,7 @@ from datetime import timedelta
 from email_sender import register_email, welcome_email
 from new_code import verify_code_generator
 from expire_code import expire_verifi_code
-from dashboard import users_edit, user_profile, course_creator
+from dashboard import users_edit, user_profile, course_creator, course_remover
 from view import users_view, course_excerpt_view, img_slider
 from models import User
 from werkzeug.utils import secure_filename
@@ -90,13 +90,15 @@ def contact_page():
 def dash_page():
     user = session.get('User')
     user_roles = session.get('Roles')
+    result_list = course_excerpt_view()
+    total_course = len(result_list[1])
     # user roles: A = admin , T = teacher , S = student
     if user_roles == 'A':
         user_roles = 'Admin'
-        return render_template('admin/admin_dash.html', data = {'user':user,})
+        return render_template('admin/admin_dash.html', data = {'user':user,'total_course':total_course})
     if user_roles == 'T':
         user_roles = 'Teacher'
-        return render_template('admin/teacher_dash.html', data = {'user':user,})
+        return render_template('admin/teacher_dash.html', data = {'user':user,'total_course':total_course})
     if user_roles == 'S':
         user_roles = 'Student'
         return render_template('admin/student_dash.html', data = {'user':user,})
@@ -161,7 +163,14 @@ def all_course():
     user_roles = session.get('Roles')
     if user_roles == 'A' or user_roles == 'T':
         user = session.get('User')
-        return render_template('admin/all_course.html', data = {'user':user,})
+        course_id = request.args.get('course-id')
+        if course_id != None:
+            course_id = int(course_id)
+            course_remover(user, course_id)
+        print(course_id)
+        result_list = course_excerpt_view()
+        course_list = result_list[0]
+        return render_template('admin/all_course.html', data = {'user':user, 'course_list':course_list})
     else:
         return abort(403)    
 
@@ -184,8 +193,8 @@ def users_table():
         return render_template('admin/users_tables.html', data = {'user':user,'user_table':user_table})
     else:
         return abort(403)
-# dashboard route
 
+# dashboard route
 @app.route('/dash/profile', methods=["GET", "POST"])
 @login_required
 def dash_profile():

@@ -9,11 +9,11 @@ def users_view():
     host = config.PSQL_HOST, 
     port = config.PSQL_PORT)
     cur = db.cursor()
-    cur.execute("SELECT firstname,lastname,email,register,create_at,user_roles FROM lms_users WHERE user_roles != 'A';" )
+    cur.execute("SELECT firstname,lastname,email,register,user_roles,to_char(create_at, 'MonthD, YYYY at HH12:MI AM') FROM lms_users WHERE user_roles != 'A';" )
     all_users = cur.fetchall()
     users_list = []
     for user in all_users:
-        firstname,lastname,email,register,create_at,user_roles = user
+        firstname,lastname,email,register,user_roles,create_at = user
         firstname = firstname.replace(' ','')
         lastname = lastname.replace(' ','')
         if register:
@@ -49,7 +49,7 @@ def course_excerpt_view():
     for post in lms_posts:
         id = post[0]
         author_id = post[1]
-        cur.execute("SELECT to_char(post_date, 'MonthD, YYYY at HH12:MI AM') FROM lms_posts WHERE id=%s;" % (id) )
+        cur.execute("SELECT to_char(post_date, 'MonthDD, YYYY at HH12:MI AM') FROM lms_posts WHERE id=%s;" % (id) )
         time = cur.fetchall()[0][0]
         cur.execute("SELECT FIRSTNAME,LASTNAME FROM lms_users WHERE id=%s;" % (author_id) )
         post_author = cur.fetchall()

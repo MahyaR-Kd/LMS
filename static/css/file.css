@@ -1,0 +1,30 @@
+
+
+.file-input {
+    /* visibility: hidden;
+    position: absolute; */
+  }
+  
+  /* 
+   * Styles for demo only 
+   */
+  
+ 
+  
+  h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0 0 5rem 0;
+    background: -webkit-linear-gradient(rgb(51, 50, 50), rgb(10, 10, 10));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+  
+  .btn.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    outline: none;
+    color: #fff;
+  }

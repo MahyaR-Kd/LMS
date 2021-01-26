@@ -1,0 +1,64 @@
+
+input.add
+{
+    float:right;
+}
+input.fieldname
+{
+    float:left;
+    clear:left;
+    display:block;
+    margin:5px;
+}
+select.fieldtype
+{
+    float:left;
+    display:block;
+    margin:5px;
+}
+input.remove
+{
+    float:left;
+    display:block;
+    margin:5px;
+}
+#yourform label
+{
+    float:left;
+    clear:left;
+    display:block;
+    margin:5px;
+}
+#yourform input, #yourform textarea
+{
+    float:left;
+    display:block;
+    margin:5px;
+}
+
+.input-file {
+    visibility: hidden;
+    position: absolute;
+  }
+  
+  /* 
+   * Styles for demo only 
+   */
+  
+  h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0 0 5rem 0;
+    background: -webkit-linear-gradient(#fff, rgb(14, 13, 13));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+  
+  .btn.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    outline: none;
+    color: #fff;
+  }
